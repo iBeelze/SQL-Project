@@ -1,0 +1,48 @@
+Q1: Who are the top 10 Artist with the most Albums?
+
+SELECT Artist.Name, 
+COUNT(Album.AlbumId) AS Total_Albums
+FROM Artist 
+JOIN Album 
+ON Artist.ArtistId = Album.ArtistId 
+GROUP BY Artist.Name  
+ORDER BY Total_Albums DESC 
+LIMIT 10;
+
+------------------------------------------
+
+Q2: What is the number of tracks in each playlist?
+
+SELECT Playlist.Name, 
+COUNT(PlaylistTrack.TrackId) AS num_of_Tracks_in_playlist
+FROM Playlist 
+JOIN PlaylistTrack 
+ON Playlist.PlaylistId = PlaylistTrack.PlaylistId 
+GROUP BY Playlist.PlaylistId 
+ORDER BY COUNT(PlaylistTrack.TrackId) DESC
+LIMIT 10;
+
+-------------------------------------------
+
+Q3: What is the Unit price per track?
+
+SELECT UnitPrice,
+COUNT(TrackId) AS Number
+FROM Track
+JOIN Album
+ON Track.AlbumId = Album.AlbumId
+GROUP BY UnitPrice
+ORDER BY Number ASC;
+
+--------------------------------------------
+
+Q4: Who has the highest of invoices by Billing Country?
+
+SELECT BillingCountry, 
+count(*) as tInvoices
+From Invoice
+JOIN Customer
+ON Invoice.CustomerId = Customer.CustomerId
+GROUP BY BillingCountry
+ORDER BY tInvoices DESC
+Limit 10;
